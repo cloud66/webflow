@@ -5,11 +5,26 @@ option go_package = "github.com/cloud66/webflow";
 package cloud66.webflow;
 
 message Request {
-    map<string, string> headers = 1;
+    string user_agent = 1;
+    string url = 2;
+    string path = 3;
+    string method = 4;
+    string host = 5;
 }
 
 message Origin {
     string ip = 1;
-    string region_code = 2;
-    string asn = 3;    
+    string continent_code = 2;
+    string country_code = 3;
+    string city_name = 4;
+    float latitude = 5;
+    float longitude = 6;
+    string timezone = 7;
+    string asn = 8;
+}
+
+message Block {
+    bool when = 1;
+    int32 with = 2;
+    string message = 3;
 }
