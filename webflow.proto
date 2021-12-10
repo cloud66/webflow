@@ -1,15 +1,44 @@
 syntax = "proto3";
+import "google/protobuf/wrappers.proto";
 
 option go_package = "github.com/cloud66/webflow";
 
 package cloud66.webflow;
 
+message Client {    
+    string family = 1;
+    string major = 2;
+    string minor = 3;
+    string patch = 4;
+}
+
+message OS {
+    string family = 1;
+    string major = 2;
+    string minor = 3;
+    string patch = 4;
+    string patch_minor = 5;
+}
+
+message Device {
+    string family = 1;
+    string brand = 2;
+    string model = 3;
+}
+
+message UserAgent {
+    Client client = 1;
+    OS os = 2;
+    Device device = 3;
+}
+
 message Request {
-    string user_agent = 1;
-    string url = 2;
-    string path = 3;
-    string method = 4;
-    string host = 5;
+    string user_agent_raw = 1;
+    UserAgent user_agent = 2;
+    string url = 3;
+    string path = 4;
+    string method = 5;
+    string host = 6;
 }
 
 message Origin {
@@ -27,4 +56,24 @@ message Block {
     bool when = 1;
     int32 with = 2;
     string message = 3;
+}
+
+message Header {
+    map<string, string> add = 1;
+    repeated string remove = 2;
+    map<string, string> set = 3;
+    google.protobuf.BoolValue when = 4;
+}
+
+message Redirect {
+    string from = 1;
+    string to = 2;
+    int32 with = 3;
+    google.protobuf.BoolValue when = 4;
+}
+
+message Rewrite {
+    string from = 1;
+    string to = 2;
+    google.protobuf.BoolValue when = 3;
 }
