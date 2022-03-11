@@ -1,5 +1,6 @@
 syntax = "proto3";
 import "google/protobuf/wrappers.proto";
+import "validate/validate.proto";
 
 option go_package = "github.com/cloud66/webflow";
 
@@ -66,14 +67,14 @@ message Header {
 }
 
 message Redirect {
-    string from = 1;
-    string to = 2;
+    string from = 1 [(validate.rules).message.required = true];
+    string to = 2 [(validate.rules).message.required = true];
     int32 with = 3;
     google.protobuf.BoolValue when = 4;
 }
 
 message Rewrite {
-    string from = 1;
-    string to = 2;
+    string from = 1 [(validate.rules).message.required = true];
+    string to = 2 [(validate.rules).message.required = true];
     google.protobuf.BoolValue when = 3;
 }
