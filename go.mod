@@ -1,7 +1,9 @@
 module github.com/cloud66/webflow
 
-go 1.17
+go 1.23
 
-require google.golang.org/protobuf v1.27.1
+toolchain go1.23.6
 
-require golang.org/x/xerrors v0.0.0-20200804184101-5ec99f83aff1 // indirect
+require google.golang.org/protobuf v1.36.5
+
+require golang.org/x/xerrors v0.0.0-20240903120638-7835f813f4da // indirect
